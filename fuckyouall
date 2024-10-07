@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lima Property</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #root {
+      text-align: center;
+    }
+
+    .video-container {
+      width: 80%;
+      margin: 40px auto;
+    }
+
+    .video {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+    }
+
+    .video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-info {
+      margin-top: 20px;
+    }
+
+    .video-info h2 {
+      margin-top: 0;
+    }
+
+    .video-info p {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    // Get the video container element
+    const videoContainer = document.getElementById('root');
+
+    // Create a function to render the video list
+    function renderVideoList() {
+      // Create a list of video objects
+      const videos = [
+        {
+          id: 1,
+          title: 'Video 1',
+          description: 'This is video 1',
+          videoUrl: 'https://www.youtube.com/embed/VIDEO_ID_1',
+          thumbnailUrl: 'https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg'
+        },
+        {
+          id: 2,
+          title: 'Video 2',
+          description: 'This is video 2',
+          videoUrl: 'https://www.youtube.com/embed/VIDEO_ID_2',
+          thumbnailUrl: 'https://img.youtube.com/vi/VIDEO_ID_2/hqdefault.jpg'
+        },
+        {
+          id: 3,
+          title: 'Video 3',
+          description: 'This is video 3',
+          videoUrl: 'https://www.youtube.com/embed/VIDEO_ID_3',
+          thumbnailUrl: 'https://img.youtube.com/vi/VIDEO_ID_3/hqdefault.jpg'
+        }
+      ];
+
+      // Create a list element to hold the video list
+      const videoList = document.createElement('ul');
+
+      // Loop through the video list and create a list item for each video
+      videos.forEach((video) => {
+        const videoListItem = document.createElement('li');
+        const videoLink = document.createElement('a');
+        const videoThumbnail = document.createElement('img');
+        const videoInfo = document.createElement('div');
+
+        videoLink.href = video.videoUrl;
+        videoLink.target = '_blank';
+        videoLink.rel = 'noopener noreferrer';
+
+        videoThumbnail.src = video.thumbnailUrl;
+        videoThumbnail.alt = video.title;
+
+        videoInfo.innerHTML = `
+          <h2>${video.title}</h2>
+          <p>${video.description}</p>
+        `;
+
+        videoListItem.appendChild(videoLink);
+        videoLink.appendChild(videoThumbnail);
+        videoListItem.appendChild(videoInfo);
+        videoList.appendChild(videoListItem);
+      });
+
+      // Add the video list to the video container
+      videoContainer.appendChild(videoList);
+    }
+
+    // Call the renderVideoList function to render the video list
+    renderVideoList();
+  </script>
+</body>
+</html>
